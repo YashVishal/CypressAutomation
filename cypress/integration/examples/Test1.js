@@ -16,13 +16,15 @@ describe('First Test Suite', function () {
         //cy.get('.products').find('.product').should('have.length',4)
 
         //Select Element in the Array List - eq Method
-        //cy.get('.products').find('.product').should('have.length',4).eq(2)
+        //cy.get('.products').find('.product').should('have.length',4).eq(2)    
 
         //Use Contains Text in the bigger tag
         //cy.get('.products').find('.product').should('have.length',4).eq(2).contains('ADD TO CART').click()
-    
 
+        //Git Enabled
+        
         cy.get('.products').find('.product').should('have.length',4).eq(2).contains('ADD TO CART').click()
+        cy.screenshot
     }
     )
 }
