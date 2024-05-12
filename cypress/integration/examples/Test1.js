@@ -21,7 +21,10 @@ describe('First Test Suite', function () {
 
         //Use Contains Text in the bigger tag
         cy.get('.products').as('productLocator')
-        cy.get('@productLocator').find('.product').should('have.length', 4).eq(2).contains('ADD TO CART').click()
+        cy.get('@productLocator').find('.product').should('have.length', 4).eq(2).contains('ADD TO CART').click().then(function () {
+            console.log('clicked on the element')
+        }
+        )
 
         //Git Enabled
 
@@ -29,15 +32,33 @@ describe('First Test Suite', function () {
         cy.screenshot
         cy.get('div.product:visible').should('have.length',4)
         */
- 
+
+        //Each Loop - Kind of acts as a for loop 
         cy.get('@productLocator').find('.product').each(($el, index, $list) => {
             const veggieText = $el.find('h4.product-name').text()
             if (veggieText.includes('Cashew')) {
                 cy.wrap($el).find('button').click()
+                console.log(veggieText)
             }
 
         }
         )
+
+        //assert if logo text is correctly displayed
+        cy.get('.brand').should('have.text', 'GREENKART')
+
+
+        //Get Text from WebElement
+        cy.get('.brand').then(function (logoelement) {
+            cy.log(logoelement.text())
+
+        })
+
+        // Not to Do - Put Locator in Variable & get text of Variable in another line - as get text is not a Cypress Command & it is not async
+        /*const logo=cy.get('.brand')
+        //cy.log(cy.get('.brand').text())
+         cy.log(logo.text())    
+        */
 
     }
     )
