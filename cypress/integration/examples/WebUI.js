@@ -18,6 +18,16 @@ describe('WebTest Suite', function () {
         //Static Dropdown - Select method takes in value or Text visible on Ui attribute 
         cy.get('select#dropdown-class-example').select('option2').should('have.value','option2')
 
+        //Dynamic Dropdown - Selecting 1 option from the Dropdown List 
+        cy.get('input#autocomplete').type('Ind')
+        cy.get('ul#ui-id-1 div').each(($el, index, $list) => {
+            if ($el.text().trim() === 'India') {
+              cy.wrap($el).click()
+            }
+          })
+
+          cy.get('input#autocomplete').should('have.value','India')
+
 
     }
 )
