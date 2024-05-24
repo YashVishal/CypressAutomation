@@ -28,7 +28,22 @@ describe('WebTest Suite', function () {
 
           cy.get('input#autocomplete').should('have.value','India')
 
+        //Handle Invisble Elements & Assertions
+          cy.get('input#displayed-text').should('be.visible')
+          cy.get('input#hide-textbox').click()
+          cy.get('input#displayed-text').should('not.be.visible')
+          cy.get('input#show-textbox').click()
+          cy.get('input#displayed-text').should('be.visible')
 
+
+        //Radio Buttons
+        cy.get('input[value="radio1"]').click().should('be.checked')
+        //Clicking all the Options of Radio Buttons
+        /*cy.get('input[name="radioButton"]').each(($el, index, $list) => {
+             cy.wrap($el).click()
+            
+          })
+          */
     }
 )
 
